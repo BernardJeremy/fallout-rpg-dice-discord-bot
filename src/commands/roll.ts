@@ -1,4 +1,4 @@
-import { inlineCode, Message } from 'discord.js';
+import { ChannelType, inlineCode, Message } from 'discord.js';
 import buildRollMessage from '../messages/rollMessage';
 import getRandomInt from '../tools/utils';
 import { Roll } from '../types/command.types';
@@ -9,6 +9,10 @@ export default {
   description: 'Roll the dice',
 
   async execute(message: Message) {
+    if (message.channel.type !== ChannelType.GuildText) {
+      return;
+    }
+
     const contentArgs = message.content.substring(1).split('d').filter((arg: string) => arg);
 
     let diceCount = 1;

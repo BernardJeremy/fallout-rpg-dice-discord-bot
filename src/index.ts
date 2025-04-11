@@ -7,8 +7,6 @@ import { Client, GatewayIntentBits } from 'discord.js';
 
 import botCommands from './commands';
 
-import { Command } from './types/command.types';
-
 const main = async () => {
   const client = new Client(
     {
@@ -35,17 +33,16 @@ const main = async () => {
 
     const { content } = message;
 
-    if (content[0] !== '!' || !content.includes('d')) {
-      return;
-    }
-
-    const currentCommandObj: Command = botCommands.roll;
-    if (!currentCommandObj) {
+    if (content[0] !== '!' || (!content.includes('d') && !content.includes('loc'))) {
       return;
     }
 
     try {
-      currentCommandObj.execute(message);
+      if (content.includes('dmg') || content.includes('loc')) {
+        botCommands.specialRoll.execute(message);
+      } else {
+        botCommands.roll.execute(message);
+      }
     } catch (error) {
       console.error(`There was an error trying to execute command : ${content}`);
       console.error(error);
