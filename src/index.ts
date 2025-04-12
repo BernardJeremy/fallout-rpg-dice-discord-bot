@@ -39,7 +39,7 @@ const main = async () => {
 
     try {
       if (content.includes('dmg') || content.includes('loc')) {
-        botCommands.specialRoll.execute(message);
+        botCommands.specialRoll.execute(message, content.includes('secret'));
       } else {
         botCommands.roll.execute(message);
       }

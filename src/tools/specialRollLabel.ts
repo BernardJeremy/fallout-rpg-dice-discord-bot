@@ -14,8 +14,8 @@ export const damageDice: Record<Lang, string[]> = {
     'Pas de dégâts !',
     'Un dégât !',
     'Deux dégâts !',
-    'Effet de dégât !',
-    'Effet de dégât !',
+    'Effet spécial et dégâts !',
+    'Effet spécial et dégâts',
   ],
 };
 
